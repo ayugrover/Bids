@@ -1,4 +1,6 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
+import intense_tor from '../apis/intense_tor';
+import { useLocation, Link } from "react-router-dom";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -72,8 +74,18 @@ const hasPremium = (premium)=>{
       }
   }
 
-const CustomersList = ({data}) => {
-  
+const CustomersList = () => {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() =>{
+      async function fetchData(){
+      const result = await intense_tor.get('/');
+      setData(result.data);
+  }
+  fetchData();
+  },[]);
+
     const classes = useStyles();
     return(
         <div>
@@ -92,16 +104,21 @@ const CustomersList = ({data}) => {
                     </TableHead>
                     <TableBody>
                     {data.map((data) => (
-                        <StyledTableRow key={data.id}>
-                        <StyledTableCell component="th" scope="row">
+                       <StyledTableRow key={data.id}>
+                        <StyledTableCell component="th" scope="row"> 
+                        <Link to = {{ 
+                          pathname: `/CustomerDetails/${data.id}`,
+                          state : {data:data}}}>
                             {data.firstname} {data.lastname}
-                           <Avatar  src= {data.avatarUrl} />
+                           <Avatar  src= {data.avatarUrl} />  
+                         </Link> 
                         </StyledTableCell>
                         <StyledTableCell align="right">{data.email}</StyledTableCell>
                         <StyledTableCell align="right">{data.phone}</StyledTableCell>
                         <StyledTableCell align="right">{hasPremium(data.hasPremium)}</StyledTableCell>
                         <StyledTableCell align="right"> {displayBids(data.bids)}</StyledTableCell>     
                         </StyledTableRow>
+                     
                     ))}
                 </TableBody>
               </Table>
