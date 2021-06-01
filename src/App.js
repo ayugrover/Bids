@@ -1,9 +1,7 @@
 import React from 'react';
-import reactDom from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import CustomerDetails from './components/CustomerDetails';
 import CustomersList from './components/CustomersList';
-//import Route from './components/Route';
 
 class App extends React.Component{
     render(){

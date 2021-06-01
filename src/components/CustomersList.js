@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import intense_tor from '../apis/intense_tor';
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -47,11 +47,11 @@ const StyledTableCell = withStyles((theme) => ({
     if(bid){
       bid = bid.sort(compareAmount);
       let result = bid.map(a => a.amount);
-      if(btnState == 1)
+      if(btnState === 1)
         return(
               result[(bid.length-1)]
             );
-      if(btnState == 0)
+      if(btnState === 0)
         return(
           result[0]
         );
@@ -68,7 +68,7 @@ const hasPremium = (premium)=>{
 }
  
   function onChange(bids) {
-    if(btnState == 1)
+    if(btnState === 1)
       {
         displayBids(bids, btnState);
       }
