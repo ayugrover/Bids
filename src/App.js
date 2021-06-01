@@ -22,30 +22,4 @@ class App extends React.Component{
 
 }
 
-/*function App() {
-    const [data, setData] = useState([]);
-
-    useEffect(() =>{
-        async function fetchData(){
-        const result = await intense_tor.get('/');
-        setData(result.data);
-    }
-    fetchData();
-    },[]);
-    
-    return (
-       <div>
-          <BrowserRouter>
-            <div>
-                <switch>
-                    <Route exact path="/" component={CustomersList}/>
-                    <Route exact path="/CustomerDetails/:id" component={CustomerDetails}/>
-                </switch>
-            </div>
-           </BrowserRouter>
-           
-       </div>
-      );
-    }*/
-
     export default App;
